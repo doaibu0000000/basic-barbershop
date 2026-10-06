@@ -100,7 +100,8 @@ Semua data di bawah ini diambil dari halaman Google Maps. Yang belum tersedia pu
 
 ## Catatan konten
 
-- Headline hero *"Everyone deserves a good hair cut"* adalah tulisan asli di dinding toko.
-- Daftar layanan (Haircut, Hair Treatment, Grooming, Coloring) diambil dari papan nama toko.
+- Seluruh tulisan halaman memakai bahasa Indonesia; nama brand (*Basic Barbershop*, WhatsApp, Google Maps) tetap apa adanya.
+- Headline hero *"Semua orang pantas tampak rapi"* adalah adaptasi Indonesia dari tulisan asli di dinding toko (*Everyone deserves a good hair cut*).
+- Daftar layanan diambil dari papan nama toko (HAIRCUT · HAIR TREATMEN · GROOMING · COLORING) dan ditampilkan dalam bahasa Indonesia: Potong Rambut, Perawatan Rambut, Cukur Jenggot, Pewarnaan.
 - Foto: `hero.jpg` (toko malam hari), `depan-malam.jpg` (toko malam, potret), `depan-siang.jpg` (toko siang), `interior-*.jpg` (suasana), `proses-*.jpg` (proses pangkas), `hasil.jpg` (hasil pangkas di cermin), `anak.jpg` (pelanggan anak).
 - Folder `image/` di root adalah foto mentah sebelum kompresi — di-ignore dari Git.
