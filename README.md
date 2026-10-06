@@ -87,13 +87,11 @@ Ada dua cara yang sama-sama bekerja dengan struktur repo ini:
 
 > Konfigurasi ini tidak saling mengganggu: hasil build yang sama bisa dideploy ke Vercel maupun GitHub Pages tanpa diubah.
 
-## ⚠️ Data yang perlu diganti sebelum presentasi
-
-Semua data di bawah ini diambil dari halaman Google Maps. Yang belum tersedia publik diberi **placeholder** — cari `GANTI NOMOR` di `index.html`:
+## ⚠️ Data yang perlu dicek sebelum presentasi
 
 | Data | Status | Lokasi |
 | --- | --- | --- |
-| Nomor WhatsApp | **placeholder** `6281234567890` | 5 link `wa.me` di `index.html` (header, hero, layanan, booking, footer, CTA bar) |
+| Nomor WhatsApp | ✅ terpasang: **08216955228** (link `wa.me/628216955228`) | 7 link `wa.me` di `index.html` |
 | Jam buka (10.00–21.00) | **perkiraan** — konfirmasi ke pemilik | `<ul class="hours">` + JSON-LD `openingHours` di `index.html` |
 | Alamat | dari koordinat Maps (dekat Pagaden, Subang) — konfirmasi nomor bangunan | section Lokasi |
 | Harga layanan | sengaja tidak dicantumkan (bisa ditambahkan bila pemilik setuju) | section Layanan |
