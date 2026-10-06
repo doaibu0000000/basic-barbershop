@@ -1,0 +1,903 @@
+/* =========================================================
+   Basic Barbershop — Pagaden, Subang
+   Tema: gelap hangat, aksen krem & emas, merah tiang barber
+   Mobile-first
+   ========================================================= */
+
+:root {
+  --bg: #0e0d0b;
+  --bg-2: #14120f;
+  --card: #181613;
+  --line: rgba(242, 237, 227, 0.1);
+  --text: #f2ede3;
+  --muted: #a79e90;
+  --gold: #d9a441;
+  --red: #c93a31;
+  --cream: #f2ede3;
+  --ink: #14120f;
+  --radius: 16px;
+  --header-h: 64px;
+  --font-display: "Anton", "Arial Narrow Bold", "Impact", sans-serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Dasar ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 16px/1.65 var(--font-body);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+section {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+.wrap {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* Lewati ke isi (aksesibilitas) */
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip:focus-visible {
+  top: 12px;
+}
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: #fffdf6;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  color: var(--text);
+  border-color: rgba(242, 237, 227, 0.35);
+  background: rgba(14, 13, 11, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.btn-ghost:hover {
+  border-color: var(--cream);
+  background: rgba(242, 237, 227, 0.09);
+  transform: translateY(-1px);
+}
+
+/* ---------- Header ---------- */
+.site-head {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+/* Latar & blur pada layer terpisah — BUKAN di header — agar header
+   tetap bebas filter (filter/backdrop-filter pada leluhur mengubah
+   containing block position:fixed dan merusak overlay menu) */
+.head-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: rgba(14, 13, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: opacity 0.3s ease;
+}
+
+.site-head.scrolled .head-bg,
+body.menu-open .head-bg {
+  opacity: 1;
+}
+
+.site-head.scrolled,
+body.menu-open .site-head {
+  border-bottom-color: var(--line);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.brand em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* Tiang barber mini */
+.pole {
+  width: 9px;
+  height: 24px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: repeating-linear-gradient(
+    -48deg,
+    #f2ede3 0 4px,
+    var(--red) 4px 7px,
+    #f2ede3 7px 11px,
+    #2e5a9e 11px 14px
+  );
+  flex: none;
+}
+
+/* Navigasi mobile: overlay layar penuh */
+.nav {
+  position: fixed;
+  inset: var(--header-h) 0 0 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 20px 24px 32px;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 -8px;
+  transition: opacity 0.25s ease, translate 0.25s ease, visibility 0.25s;
+}
+
+body.menu-open .nav {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.nav > a:not(.nav-cta) {
+  font-family: var(--font-display);
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav > a:not(.nav-cta):hover {
+  color: var(--gold);
+}
+
+.nav-cta {
+  margin-top: 24px;
+}
+
+.menu-btn {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  min-height: 42px;
+  padding: 0 18px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.menu-x {
+  display: none;
+}
+
+body.menu-open .menu-label {
+  display: none;
+}
+
+body.menu-open .menu-x {
+  display: inline;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 32%;
+}
+
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 13, 11, 0.62) 0%,
+    rgba(14, 13, 11, 0.18) 34%,
+    rgba(14, 13, 11, 0.55) 62%,
+    rgba(14, 13, 11, 0.92) 88%,
+    var(--bg) 100%
+  );
+}
+
+.hero-inner {
+  position: relative;
+  padding-block: 110px 64px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(46px, 12.5vw, 104px);
+  line-height: 0.98;
+  letter-spacing: 0.012em;
+  text-transform: uppercase;
+  max-width: 12ch;
+}
+
+.lede {
+  margin-top: 18px;
+  font-size: 16.5px;
+  color: #cfc7b8;
+  max-width: 34ch;
+}
+
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.cta-row .btn {
+  width: 100%;
+}
+
+/* ---------- Pita layanan ---------- */
+.band {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 15px 0;
+  border-block: 1px solid var(--line);
+  background: var(--bg-2);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.band span {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 227, 0.5);
+  flex: none;
+}
+
+.band i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  flex: none;
+}
+
+/* ---------- Section umum ---------- */
+.sec {
+  padding-block: clamp(72px, 12vw, 128px);
+}
+
+.sec-alt {
+  background: var(--bg-2);
+  border-block: 1px solid var(--line);
+}
+
+.sec-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.sec-label::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.sec h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 7.5vw, 60px);
+  line-height: 1.02;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.sub {
+  color: var(--muted);
+  max-width: 44ch;
+}
+
+/* ---------- Layanan ---------- */
+.svc-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.svc {
+  background: var(--bg);
+  padding: 30px 26px 34px;
+  transition: background 0.25s ease;
+}
+
+.svc-no {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+
+.svc h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 23px;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  margin: 12px 0 8px;
+}
+
+.svc p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 42ch;
+}
+
+@media (hover: hover) {
+  .svc:hover {
+    background: var(--card);
+  }
+}
+
+.svc-note {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+
+.svc-note a {
+  color: var(--gold);
+  text-underline-offset: 4px;
+  font-weight: 500;
+}
+
+.svc-note a:hover {
+  color: var(--cream);
+}
+
+/* ---------- Galeri ---------- */
+.gal-grid {
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gal {
+  border: 0;
+  padding: 0;
+  background: none;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  aspect-ratio: 3 / 4;
+}
+
+.gal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+@media (hover: hover) {
+  .gal:hover img {
+    transform: scale(1.045);
+  }
+}
+
+/* Lightbox */
+.lightbox {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(92vw, 880px);
+  max-height: 88vh;
+  margin: auto;
+  overflow: visible;
+}
+
+.lightbox::backdrop {
+  background: rgba(10, 9, 8, 0.93);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 88vh;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top));
+  right: 16px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(14, 13, 11, 0.7);
+  color: var(--text);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  border-color: var(--cream);
+}
+
+/* ---------- Cara booking ---------- */
+.booking-grid {
+  display: grid;
+  gap: 44px;
+}
+
+.steps {
+  list-style: none;
+  margin: 26px 0 30px;
+}
+
+.steps li {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  padding: 19px 0;
+  border-top: 1px solid var(--line);
+}
+
+.steps li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.step-no {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gold);
+  width: 26px;
+  flex: none;
+}
+
+.steps h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.steps p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.booking-photo {
+  position: relative;
+}
+
+.booking-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 1;
+}
+
+.booking-photo figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (min-width: 900px) {
+  .booking-photo::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: -14px;
+    bottom: -14px;
+    left: 16px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+}
+
+/* ---------- Lokasi & jam buka ---------- */
+.loc-grid {
+  display: grid;
+  gap: 40px;
+}
+
+.loc-info address {
+  font-style: normal;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.hours {
+  list-style: none;
+  border-top: 1px solid var(--line);
+  margin-bottom: 18px;
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.hours li span {
+  color: var(--muted);
+}
+
+.hours li b {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hours li.today span::after {
+  content: " — hari ini";
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.loc-note {
+  color: var(--muted);
+  font-size: 14.5px;
+  margin-bottom: 26px;
+}
+
+.loc-map {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  aspect-ratio: 4 / 3;
+  background: var(--card);
+}
+
+.loc-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.4) contrast(0.92) brightness(0.96);
+}
+
+/* ---------- Footer ---------- */
+.site-foot {
+  border-top: 1px solid var(--line);
+  padding: 56px 0 calc(96px + env(safe-area-inset-bottom));
+}
+
+.foot-brand {
+  font-size: 22px;
+}
+
+.foot-tag {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.foot-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 22px 0 30px;
+}
+
+.foot-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14.5px;
+}
+
+.foot-nav a:hover {
+  color: var(--cream);
+}
+
+.foot-fine {
+  color: rgba(167, 158, 144, 0.75);
+  font-size: 13px;
+}
+
+/* ---------- Bar CTA melayang (mobile) ---------- */
+.cta-bar {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  translate: 0 14px;
+  pointer-events: none;
+  transition: opacity 0.25s ease, translate 0.25s ease;
+}
+
+.cta-bar.show {
+  opacity: 1;
+  translate: 0 0;
+  pointer-events: auto;
+}
+
+.cta-bar .btn {
+  flex: 1;
+  min-height: 52px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+}
+
+.cta-bar .btn-ghost {
+  background: rgba(20, 18, 15, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+/* ---------- Reveal saat scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition-delay: var(--d, 0s);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .gal img,
+  .btn {
+    transition: none;
+  }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 640px) {
+  .cta-row {
+    flex-direction: row;
+  }
+
+  .cta-row .btn {
+    width: auto;
+  }
+
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gal-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-h: 76px;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    background: none;
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+  }
+
+  .nav > a:not(.nav-cta) {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    padding: 0;
+    border: 0;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .nav > a:not(.nav-cta):hover {
+    color: var(--cream);
+  }
+
+  .nav-cta {
+    margin: 0;
+    min-height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+
+  .hero-inner {
+    padding-block: 0 96px;
+  }
+
+  .band span {
+    font-size: 18px;
+  }
+
+  .booking-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 72px;
+  }
+
+  .loc-grid {
+    grid-template-columns: 1fr 1.15fr;
+    align-items: center;
+    gap: 72px;
+  }
+
+  .site-foot {
+    padding-bottom: 56px;
+  }
+
+  .cta-bar {
+    display: none;
+  }
+}

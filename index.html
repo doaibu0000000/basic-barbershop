@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Basic Barbershop — Haircut, Treatment & Grooming di Pagaden, Subang</title>
+  <meta name="description" content="Barbershop di Jl. Raya Pamanukan–Cikampek, Pagaden, Kab. Subang. Haircut, hair treatment, grooming & coloring. Buka setiap hari — booking via WhatsApp atau langsung mampir." />
+  <meta name="theme-color" content="#0E0D0B" />
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Basic Barbershop — Pagaden, Subang" />
+  <meta property="og:description" content="Everyone deserves a good hair cut. Haircut, treatment, grooming & coloring — buka setiap hari." />
+  <meta property="og:image" content="./images/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="preload" as="image" href="./images/hero.jpg" fetchpriority="high" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./src/style.css" />
+
+  <!-- Data terstruktur untuk Google (LocalBusiness). -->
+  <!-- CATATAN: jam buka di bawah masih perkiraan — sesuaikan dengan jam asli toko. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": "Basic Barbershop",
+    "description": "Haircut, hair treatment, grooming & coloring di Pagaden, Subang.",
+    "image": "./images/og.jpg",
+    "geo": { "@type": "GeoCoordinates", "latitude": -6.4565119, "longitude": 107.812718 },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Raya Pamanukan – Cikampek",
+      "addressLocality": "Pagaden",
+      "addressRegion": "Jawa Barat",
+      "postalCode": "41252",
+      "addressCountry": "ID"
+    },
+    "openingHours": "Mo-Su 10:00-21:00",
+    "priceRange": "Rp"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#konten">Langsung ke isi</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-head" id="atas">
+    <!-- Latar + blur dipisah ke layer ini: backdrop-filter pada header
+         akan merusak position:fixed overlay menu mobile -->
+    <div class="head-bg" aria-hidden="true"></div>
+    <div class="wrap bar">
+      <a class="brand" href="#atas">
+        <span class="pole" aria-hidden="true"></span>
+        <span>Basic <em>Barbershop</em></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigasi utama">
+        <a href="#layanan">Layanan</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#lokasi">Lokasi</a>
+        <!-- GANTI NOMOR: nomor WhatsApp toko -->
+        <a class="btn btn-primary nav-cta" href="https://wa.me/6281234567890?text=Halo%20Basic%20Barbershop%2C%20mau%20booking%20potong%20rambut." target="_blank" rel="noopener">Booking</a>
+      </nav>
+
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="menu-label">Menu</span>
+        <span class="menu-x" aria-hidden="true">Tutup</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="konten">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <img class="hero-img" src="./images/hero.jpg" alt="Tampak depan Basic Barbershop saat malam, papan nama menyala di atas pintu" fetchpriority="high" />
+      <div class="hero-veil" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <p class="eyebrow reveal">Pagaden, Subang · Buka setiap hari</p>
+        <h1 class="reveal" style="--d:.06s">Everyone deserves a&nbsp;good hair&nbsp;cut.</h1>
+        <p class="lede reveal" style="--d:.12s">Potongan bersih, suasana santai, harga masuk akal. Mampir aja.</p>
+        <div class="cta-row reveal" style="--d:.18s">
+          <a class="btn btn-primary" href="https://wa.me/6281234567890?text=Halo%20Basic%20Barbershop%2C%20mau%20booking%20potong%20rambut." target="_blank" rel="noopener">Booking via WhatsApp</a>
+          <a class="btn btn-ghost" href="#layanan">Lihat layanan</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pita layanan — mengikuti papan nama toko -->
+    <div class="band" aria-hidden="true">
+      <span>Haircut</span><i></i><span>Hair Treatment</span><i></i><span>Grooming</span><i></i><span>Coloring</span><i></i>
+      <span>Haircut</span><i></i><span>Hair Treatment</span><i></i><span>Grooming</span><i></i><span>Coloring</span><i></i>
+      <span>Haircut</span><i></i><span>Hair Treatment</span><i></i><span>Grooming</span><i></i><span>Coloring</span><i></i>
+    </div>
+
+    <!-- ===== LAYANAN ===== -->
+    <section class="sec" id="layanan">
+      <div class="wrap">
+        <p class="sec-label reveal">Layanan</p>
+        <h2 class="reveal" style="--d:.06s">Cukup lengkap di&nbsp;sini.</h2>
+
+        <div class="svc-grid">
+          <article class="svc reveal">
+            <span class="svc-no">01</span>
+            <h3>Haircut</h3>
+            <p>Potongan bersih sesuai bentuk kepala kamu. Punya referensi? Kasih lihat aja fotonya.</p>
+          </article>
+          <article class="svc reveal" style="--d:.06s">
+            <span class="svc-no">02</span>
+            <h3>Hair Treatment</h3>
+            <p>Rambut kering, ketombe, atau rontok? Kami pelihara pelan-pelan sampai sehat lagi.</p>
+          </article>
+          <article class="svc reveal" style="--d:.12s">
+            <span class="svc-no">03</span>
+            <h3>Grooming</h3>
+            <p>Rapiin jenggot, kumis, dan alis. Detail kecil, bedanya kerasa banget.</p>
+          </article>
+          <article class="svc reveal" style="--d:.18s">
+            <span class="svc-no">04</span>
+            <h3>Coloring</h3>
+            <p>Mau berani atau tetap natural? Warnanya kami bantu pilih yang cocok sama kamu.</p>
+          </article>
+        </div>
+
+        <p class="svc-note reveal">
+          Harga? Bersahabat.
+          <!-- GANTI NOMOR: nomor WhatsApp toko -->
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20mau%20tanya-tanya%20harga%20layanan." target="_blank" rel="noopener">Tanya lewat WhatsApp →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== GALERI ===== -->
+    <section class="sec sec-alt" id="galeri">
+      <div class="wrap">
+        <p class="sec-label reveal">Galeri</p>
+        <h2 class="reveal" style="--d:.06s">Foto asli dari toko&nbsp;kami.</h2>
+        <p class="sub reveal" style="--d:.12s">Nggak ada foto stok — semua diambil di Basic Barbershop.</p>
+
+        <div class="gal-grid">
+          <button class="gal reveal" type="button"><img src="./images/depan-malam.jpg" alt="Tampak depan Basic Barbershop saat malam dengan pelanggan datang" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.05s" type="button"><img src="./images/interior-merah.jpg" alt="Interior barbershop dengan kursi hitam dan pintu merah" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.1s" type="button"><img src="./images/proses-1.jpg" alt="Barber menata rambut pelanggan di depan cermin" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.15s" type="button"><img src="./images/depan-siang.jpg" alt="Tampak depan toko Basic Barbershop pada siang hari" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.05s" type="button"><img src="./images/hasil.jpg" alt="Hasil potongan rambut dilihat di cermin" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.1s" type="button"><img src="./images/kursi.jpg" alt="Baris kursi barber hitam di dalam toko" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.15s" type="button"><img src="./images/interior-lebar.jpg" alt="Suasana ruang dalam barbershop yang luas" loading="lazy" /></button>
+          <button class="gal reveal" style="--d:.2s" type="button"><img src="./images/proses-2.jpg" alt="Barber memotong rambut pelanggan dengan mesin cukur" loading="lazy" /></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CARA BOOKING ===== -->
+    <section class="sec" id="booking">
+      <div class="wrap booking-grid">
+        <div class="booking-copy">
+          <p class="sec-label reveal">Cara booking</p>
+          <h2 class="reveal" style="--d:.06s">Gampangnya gini.</h2>
+
+          <ol class="steps">
+            <li class="reveal">
+              <span class="step-no" aria-hidden="true">1</span>
+              <div><h3>Chat WhatsApp</h3><p>Ceritain mau potong jam berapa.</p></div>
+            </li>
+            <li class="reveal" style="--d:.06s">
+              <span class="step-no" aria-hidden="true">2</span>
+              <div><h3>Sepakati waktunya</h3><p>Kami konfirmasi barber yang kosong.</p></div>
+            </li>
+            <li class="reveal" style="--d:.12s">
+              <span class="step-no" aria-hidden="true">3</span>
+              <div><h3>Datang, duduk, kelar</h3><p>Tinggal keluar dari sini lebih rapi.</p></div>
+            </li>
+          </ol>
+
+          <!-- GANTI NOMOR: nomor WhatsApp toko -->
+          <a class="btn btn-primary reveal" style="--d:.18s" href="https://wa.me/6281234567890?text=Halo%20Basic%20Barbershop%2C%20mau%20booking%20potong%20rambut." target="_blank" rel="noopener">Mulai chat</a>
+        </div>
+
+        <figure class="booking-photo reveal" style="--d:.1s">
+          <img src="./images/anak.jpg" alt="Anak kecil duduk santai di depan toko setelah selesai dipangkas" loading="lazy" />
+          <figcaption>Dari yang kecil sampai yang besar — semua dikerjakan sabar.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== LOKASI & JAM BUKA ===== -->
+    <section class="sec sec-alt" id="lokasi">
+      <div class="wrap loc-grid">
+        <div class="loc-info">
+          <p class="sec-label reveal">Lokasi &amp; jam buka</p>
+          <h2 class="reveal" style="--d:.06s">Gampang ketemu.</h2>
+
+          <address class="reveal" style="--d:.1s">
+            Jl. Raya Pamanukan – Cikampek, Pagaden,<br />Kab. Subang, Jawa Barat
+          </address>
+
+          <!-- CATATAN: jam buka masih perkiraan, sesuaikan sebelum presentasi -->
+          <ul class="hours reveal" style="--d:.14s">
+            <li data-day="1,2,3,4,5"><span>Senin – Jumat</span><b>10.00 – 21.00</b></li>
+            <li data-day="6"><span>Sabtu</span><b>10.00 – 21.00</b></li>
+            <li data-day="0"><span>Minggu</span><b>10.00 – 21.00</b></li>
+          </ul>
+
+          <p class="loc-note reveal" style="--d:.18s">Lagi dekat sini? Tanpa reservasi juga boleh, asal antre ya.</p>
+
+          <div class="cta-row reveal" style="--d:.22s">
+            <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=-6.4565119,107.812718" target="_blank" rel="noopener">Petunjuk arah</a>
+            <!-- GANTI NOMOR: nomor WhatsApp toko -->
+            <a class="btn btn-primary" href="https://wa.me/6281234567890?text=Halo%20Basic%20Barbershop%2C%20mau%20booking%20potong%20rambut." target="_blank" rel="noopener">Chat WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="loc-map reveal" style="--d:.1s">
+          <iframe
+            title="Peta lokasi Basic Barbershop di Pagaden, Subang"
+            src="https://www.google.com/maps?q=-6.4565119,107.812718&amp;z=17&amp;output=embed"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="brand foot-brand"><span class="pole" aria-hidden="true"></span><span>Basic <em>Barbershop</em></span></p>
+      <p class="foot-tag">Everyone deserves a good hair cut.</p>
+      <nav class="foot-nav" aria-label="Navigasi footer">
+        <a href="#layanan">Layanan</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#lokasi">Lokasi</a>
+        <!-- GANTI NOMOR: nomor WhatsApp toko -->
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+      <p class="foot-fine">
+        © <span id="tahun">2026</span> Basic Barbershop · Pagaden, Subang — foto asli dari Google&nbsp;Maps.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bar CTA melayang (mobile) -->
+  <div class="cta-bar" id="ctabar">
+    <a class="btn btn-primary" href="https://wa.me/6281234567890?text=Halo%20Basic%20Barbershop%2C%20mau%20booking%20potong%20rambut." target="_blank" rel="noopener">Chat WhatsApp</a>
+    <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=-6.4565119,107.812718" target="_blank" rel="noopener">Petunjuk arah</a>
+  </div>
+
+  <!-- Lightbox galeri -->
+  <dialog class="lightbox" id="lightbox">
+    <img src="" alt="" />
+    <button class="lightbox-close" type="button" aria-label="Tutup gambar">✕</button>
+  </dialog>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

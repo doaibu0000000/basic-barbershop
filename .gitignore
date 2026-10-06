@@ -1,0 +1,17 @@
+# Dependensi & build
+node_modules/
+dist/
+
+# Lingkungan
+.env
+.env.*
+!.env.example
+
+# Sumber mentah & file lokal (tidak dipakai di deployment)
+image/
+.mimosa/
+
+# Sistem
+.DS_Store
+Thumbs.db
+*.log
