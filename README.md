@@ -19,13 +19,18 @@ Halaman ini mobile-first, cepat, dan berorientasi konversi: satu CTA utama (book
 ├── src/
 │   ├── style.css           # Tema gelap premium, mobile-first
 │   └── main.js             # Interaksi ringan
-├── public/
-│   ├── favicon.svg         # Tiang barber
-│   └── images/             # Foto asli dari Google Maps (sudah dikompres)
+├── images/                 # Foto asli dari Google Maps (sudah dikompres)
+│   └── og.jpg              #   gambar preview sosial media
+├── favicon.svg             # Tiang barber
+├── public/images/og.jpg    # Salinan og.jpg untuk hasil build (dist)
 ├── .github/workflows/      # Deploy otomatis ke GitHub Pages
 ├── vite.config.js          # base "./" → aman untuk Vercel & GitHub Pages
 └── package.json
 ```
+
+> Catatan: foto sengaja diletakkan di `images/` pada root (bukan di dalam
+> `public/`) supaya halaman tetap tampil utuh baik saat dilayani dari
+> hasil build (`dist/`) maupun saat GitHub Pages menyajikan repo mentah.
 
 ## Menjalankan di lokal
 
@@ -60,10 +65,25 @@ Tidak ada — halaman ini 100% statis, tanpa kunci API, tanpa kredensial.
 
 ### GitHub Pages (untuk testing)
 
+Ada dua cara yang sama-sama bekerja dengan struktur repo ini:
+
+**Cara 1 — GitHub Actions (disarankan, memakai hasil build):**
+
 1. Push ke branch `main`.
-2. Di GitHub: **Settings → Pages → Source: GitHub Actions**.
-3. Workflow `.github/workflows/deploy-pages.yml` akan build dan deploy otomatis.
-4. Tidak perlu konfigurasi base path — `vite.config.js` memakai `base: "./"` (path relatif), jadi aset tetap beres walaupun diakses dari `username.github.io/nama-repo/`.
+2. Di GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. Workflow `.github/workflows/deploy-pages.yml` akan build dan deploy folder `dist/` otomatis.
+
+**Cara 2 — Deploy from a branch (tanpa build):**
+
+1. Di GitHub: **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `(root)`**.
+2. Karena `index.html` dan `src/` bisa dilayani langsung dan foto ada di `images/` pada root, halaman tetap tampil utuh tanpa build.
+
+> ⚠️ Masalah umum: jika Pages dilayani dari root repo tetapi foto masih
+> berada di dalam `public/images/`, semua gambar akan 404 (halaman muncul
+> tapi gambar kosong). Pastikan folder `images/` ada di root repo.
+>
+> Setelah push, tunggu ±1 menit lalu **hard refresh** (Ctrl+Shift+R) —
+> GitHub Pages menyimpan cache.
 
 > Konfigurasi ini tidak saling mengganggu: hasil build yang sama bisa dideploy ke Vercel maupun GitHub Pages tanpa diubah.
 
